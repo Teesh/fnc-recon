@@ -7,7 +7,7 @@ const app: Express = express();
 const port = process.env.PORT;
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Welcome to Teesh\'s Recon Database');
+  res.send('Welcome to the FNC Recon Tool');
 });
 
 app.listen(port, () => {
