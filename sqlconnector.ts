@@ -10,10 +10,10 @@ export const createUnixSocketPool = async (config: mysql.PoolConfig) => {
   // Cloud Secret Manager (https://cloud.google.com/secret-manager) to help
   // keep secrets safe.
   return mysql.createPool({
-    user: process.env.DB_USER, // e.g. 'my-db-user'
-    password: process.env.DB_PASS, // e.g. 'my-db-password'
-    database: process.env.DB_NAME, // e.g. 'my-database'
-    socketPath: process.env.INSTANCE_UNIX_SOCKET, // e.g. '/cloudsql/project:region:instance'
+    user: process.env.DB_USER_SECRET, // e.g. 'my-db-user'
+    password: process.env.DB_PASS_SECRET, // e.g. 'my-db-password'
+    database: process.env.DB_NAME_SECRET, // e.g. 'my-database'
+    socketPath: process.env.INSTANCE_CONNECTION_NAME_SECRET, // e.g. '/cloudsql/project:region:instance'
     // Specify additional properties here.
     ...config,
   })
