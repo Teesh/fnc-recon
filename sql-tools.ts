@@ -1,12 +1,13 @@
-import { createUnixSocketPool } from './sqlconnector'
+import { createUnixSocketPool } from './sql-connector'
 
-async function testConnection() {
+export async function testConnection() {
     try {
-        const stmt = 'SHOW TABLES';
+        const stmt = 'SHOW TABLES'
         // Pool.query automatically checks out, uses, and releases a connection
         // back into the pool, ensuring it is always returned successfully.
         let pool = await createUnixSocketPool({})
-        pool.query(stmt);
+        let response = pool.query(stmt)
+        return response
     } catch (err) {
         // If something goes wrong, handle the error in this section. This might
         // involve retrying or adjusting parameters depending on the situation.
