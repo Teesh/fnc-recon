@@ -58,7 +58,7 @@ const createPoolAndEnsureSchema = async () =>
       return pool
     })
     .catch(err => {
-      throw process.env.INSTANCE_CONNECTION_NAME_SECRET + err
+      throw err
     })
 
 // Set up a variable to hold our connection pool. It would be safe to
