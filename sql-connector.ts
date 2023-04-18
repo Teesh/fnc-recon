@@ -18,5 +18,3 @@ export const createUnixSocketPool = async (config: mysql.PoolConfig) => {
     ...config,
   })
 }
-
-module.exports = createUnixSocketPool
