@@ -7,9 +7,8 @@ dotenv.config()
 const app: Express = express()
 const port = process.env.PORT
 
-let testSQL = await testConnection()
-
-app.get('/', (req: Request, res: Response) => {
+app.get('/', async (req: Request, res: Response) => {
+  let testSQL = await testConnection()
   res.send('Welcome to the FNC Recon Tool: ' + testSQL)
 })
 
