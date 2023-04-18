@@ -48,9 +48,7 @@ const createPool = async () => {
 
 const ensureSchema = async (pool: Pool) => {
   // Wait for tables to be created (if they don't already exist).
-  await pool.query(
-    `SHOW TABLES`
-  )
+  await pool.query(`SHOW TABLES`)
 }
 
 const createPoolAndEnsureSchema = async () =>
