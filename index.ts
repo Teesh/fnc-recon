@@ -48,13 +48,13 @@ const createPool = async () => {
 
 const ensureSchema = async (pool: Pool) => {
   // Wait for tables to be created (if they don't already exist).
-  await pool.query(`SHOW TABLES`)
+  return await pool.query(`SHOW TABLES`)
 }
 
 const createPoolAndEnsureSchema = async () =>
   await createPool()
     .then(async pool => {
-      await ensureSchema(pool)
+      console.log(await ensureSchema(pool))
       return pool
     })
     .catch(err => {
