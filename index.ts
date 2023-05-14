@@ -72,15 +72,11 @@ const getSchema = async (pool: Pool) => {
 let pool: Pool
 
 app.use(async (req, res, next) => {
-  console.log('initializing server')
   if (pool) {
-    console.log('sql connector already created')
     return next()
   }
   try {
-    console.log('creating sql connector')
     pool = await createPoolAndEnsureSchema()
-    console.log(pool)
     next()
   } catch (err) {
     return next(err)
@@ -94,8 +90,7 @@ app.get('/', async (req: Request, res: Response) => {
   }
   try {
     let schema = await getSchema(pool)
-    console.log(schema)
-    res.send('Welcome to the FNC Recon Tool: ' + schema)
+    res.send('Welcome to the FNC Recon Tool: ' + JSON.stringify(schema))
   } catch (err) {
     res.send('' + err)
   }
