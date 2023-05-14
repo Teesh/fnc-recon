@@ -63,7 +63,7 @@ const createPoolAndEnsureSchema = async () => {
 }
 
 const getSchema = async (pool: Pool) => {
-  return await pool.query('DESCRIBE reports')
+  return pool.query('DESCRIBE reports')
 }
 
 // Set up a variable to hold our connection pool. It would be safe to
@@ -89,7 +89,7 @@ app.get('/', async (req: Request, res: Response) => {
     console.log(schema)
     res.send('Welcome to the FNC Recon Tool: ' + schema)
   } catch (err) {
-    res.send(err)
+    res.send('' + err)
   }
 })
 
