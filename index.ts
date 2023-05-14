@@ -48,18 +48,23 @@ const createPool = async () => {
 
 const ensureSchema = async (pool: Pool) => {
   // Wait for tables to be created (if they don't already exist).
-  return await pool.query(`SHOW TABLES`)
+  await pool.query(`SHOW TABLES`)
 }
 
-const createPoolAndEnsureSchema = async () =>
+const createPoolAndEnsureSchema = async () => {
   await createPool()
     .then(async pool => {
-      console.log(await ensureSchema(pool))
+      await ensureSchema(pool)
       return pool
     })
     .catch(err => {
       throw err
     })
+}
+
+const getSchema = async (pool: Pool) => {
+  return await pool.query('DESCRIBE reports')
+}
 
 // Set up a variable to hold our connection pool. It would be safe to
 // initialize this right away, but we defer its instantiation to ease
@@ -71,7 +76,7 @@ app.use(async (req, res, next) => {
     return next()
   }
   try {
-    pool = await createPoolAndEnsureSchema()
+    await createPoolAndEnsureSchema()
     next()
   } catch (err) {
     return next(err)
@@ -79,7 +84,7 @@ app.use(async (req, res, next) => {
 })
 
 app.get('/', async (req: Request, res: Response) => {
-  res.send('Welcome to the FNC Recon Tool: ')
+  res.send('Welcome to the FNC Recon Tool: ' + getSchema(pool))
 })
 
 app.listen(port, () => {
