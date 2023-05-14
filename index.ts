@@ -77,6 +77,7 @@ app.use(async (req, res, next) => {
   }
   try {
     await createPoolAndEnsureSchema()
+    console.log(pool)
     next()
   } catch (err) {
     return next(err)
@@ -84,6 +85,10 @@ app.use(async (req, res, next) => {
 })
 
 app.get('/', async (req: Request, res: Response) => {
+  if (!pool) {
+    res.send('pool failed to instantiate')
+    return
+  }
   try {
     let schema = await getSchema(pool)
     console.log(schema)
