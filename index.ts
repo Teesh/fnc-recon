@@ -54,6 +54,7 @@ const ensureSchema = async (pool: Pool) => {
 const createPoolAndEnsureSchema = async () => {
   await createPool()
     .then(async pool => {
+      console.log('sql connector created' + pool)
       await ensureSchema(pool)
       return pool
     })
@@ -72,10 +73,13 @@ const getSchema = async (pool: Pool) => {
 let pool: Pool
 
 app.use(async (req, res, next) => {
+  console.log('initializing server')
   if (pool) {
+    console.log('sql connector already created')
     return next()
   }
   try {
+    console.log('creating sql connector')
     await createPoolAndEnsureSchema()
     console.log(pool)
     next()
@@ -86,7 +90,7 @@ app.use(async (req, res, next) => {
 
 app.get('/', async (req: Request, res: Response) => {
   if (!pool) {
-    res.send('pool failed to instantiate')
+    res.send('sql connector failed to instantiate')
     return
   }
   try {
