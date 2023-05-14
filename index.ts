@@ -51,16 +51,15 @@ const ensureSchema = async (pool: Pool) => {
   await pool.query(`SHOW TABLES`)
 }
 
-const createPoolAndEnsureSchema = async () => {
-  await createPool()
-    .then(async pool => {
-      console.log('sql connector created' + pool)
-      await ensureSchema(pool)
-      return pool
-    })
-    .catch(err => {
-      throw err
-    })
+const createPoolAndEnsureSchema = async (): Promise<Pool> => {
+  pool = await createPool()
+  console.log('sql connector created' + pool)
+  try {
+    await ensureSchema(pool)
+    return pool
+  } catch (err) {
+    throw err
+  }
 }
 
 const getSchema = async (pool: Pool) => {
@@ -80,7 +79,7 @@ app.use(async (req, res, next) => {
   }
   try {
     console.log('creating sql connector')
-    await createPoolAndEnsureSchema()
+    pool = await createPoolAndEnsureSchema()
     console.log(pool)
     next()
   } catch (err) {
