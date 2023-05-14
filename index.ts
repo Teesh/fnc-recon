@@ -85,7 +85,9 @@ app.use(async (req, res, next) => {
 
 app.get('/', async (req: Request, res: Response) => {
   try {
-    res.send('Welcome to the FNC Recon Tool: ' + await getSchema(pool))
+    let schema = await getSchema(pool)
+    console.log(schema)
+    res.send('Welcome to the FNC Recon Tool: ' + schema)
   } catch (err) {
     res.send(err)
   }
