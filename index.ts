@@ -84,7 +84,11 @@ app.use(async (req, res, next) => {
 })
 
 app.get('/', async (req: Request, res: Response) => {
-  res.send('Welcome to the FNC Recon Tool: ' + await getSchema(pool))
+  try {
+    res.send('Welcome to the FNC Recon Tool: ' + await getSchema(pool))
+  } catch (err) {
+    res.send(err)
+  }
 })
 
 app.listen(port, () => {
