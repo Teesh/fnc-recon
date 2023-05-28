@@ -27,7 +27,7 @@ app.get('/', async (req: Request, res: Response) => {
     return
   }
   try {
-    let schema = await getSchema(pool)
+    let schema = await getSchema()
     res.json(schema)
   } catch (err) {
     res.send('' + err)
