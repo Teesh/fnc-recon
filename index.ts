@@ -92,7 +92,7 @@ app.get('/', async (req: Request, res: Response) => {
   }
   try {
     let schema = await getSchema(pool)
-    res.send('Welcome to the FNC Recon Tool: \n' + JSON.stringify(schema))
+    res.json(schema)
   } catch (err) {
     res.send('' + err)
   }
