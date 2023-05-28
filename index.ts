@@ -83,6 +83,8 @@ app.use(async (req, res, next) => {
   }
 })
 
+app.set('json spaces', 2)
+
 app.get('/', async (req: Request, res: Response) => {
   if (!pool) {
     res.send('sql connector failed to instantiate')
@@ -90,7 +92,7 @@ app.get('/', async (req: Request, res: Response) => {
   }
   try {
     let schema = await getSchema(pool)
-    res.send('Welcome to the FNC Recon Tool: ' + JSON.stringify(schema))
+    res.send('Welcome to the FNC Recon Tool: \n' + JSON.stringify(schema))
   } catch (err) {
     res.send('' + err)
   }
