@@ -1,3 +1,4 @@
+# cloud build file to start build in prod pipeline 
 steps:
     # Build the container image
     - name: "gcr.io/cloud-builders/docker"

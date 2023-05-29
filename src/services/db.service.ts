@@ -14,11 +14,35 @@ export const createUnixSocketPool = async (config: mysql.PoolConfig) => {
   // secure - consider a more secure solution such as
   // Cloud Secret Manager (https://cloud.google.com/secret-manager) to help
   // keep secrets safe.
+  let envConfig: mysql.PoolConfig
+  if (process.env.ENVIRONMENT === 'development') {
+    // TODO: update once development server is set up
+    // Using production server until then
+    envConfig = {
+      user: process.env.DB_USER_SECRET,
+      password: process.env.DB_PASS_SECRET,
+      database: process.env.DB_NAME_SECRET,
+      socketPath: '/cloudsql/' + process.env.INSTANCE_CONNECTION_NAME_SECRET, // e.g. '/cloudsql/project:region:instance'
+    }
+  } else if (process.env.ENVIRONMENT === 'local') {
+    envConfig = {
+      host: 'db',
+      port: 3306,
+      user: 'root',
+      password: 'password',
+      database: 'test',
+    }
+  } else { // process.env.ENVIRONMENT === 'production'
+    envConfig = {
+      user: process.env.DB_USER_SECRET,
+      password: process.env.DB_PASS_SECRET,
+      database: process.env.DB_NAME_SECRET,
+      socketPath: '/cloudsql/' + process.env.INSTANCE_CONNECTION_NAME_SECRET, // e.g. '/cloudsql/project:region:instance'
+    }
+  }
+
   return mysql.createPool({
-    user: process.env.DB_USER_SECRET, // e.g. 'my-db-user'
-    password: process.env.DB_PASS_SECRET, // e.g. 'my-db-password'
-    database: process.env.DB_NAME_SECRET, // e.g. 'my-database'
-    socketPath: '/cloudsql/' + process.env.INSTANCE_CONNECTION_NAME_SECRET, // e.g. '/cloudsql/project:region:instance'
+    ...envConfig,
     // Specify additional properties here.
     ...config,
   })
@@ -54,7 +78,7 @@ const createPool = async () => {
     // [END cloud_sql_mysql_mysql_backoff]
   }
 
-  if (process.env.INSTANCE_CONNECTION_NAME_SECRET) {
+  if (process.env.INSTANCE_CONNECTION_NAME_SECRET || process.env.ENVIRONMENT === 'local') {
     // Use a Unix socket when INSTANCE_CONNECTION_NAME_SECRET (e.g., /cloudsql/proj:region:instance) is defined.
     return createUnixSocketPool(config)
   } else {
@@ -69,7 +93,7 @@ const ensureSchema = async (pool: Pool) => {
 
 export const createPoolAndEnsureSchema = async (): Promise<Pool> => {
   pool = await createPool()
-  console.log('sql connector created' + pool)
+  console.log('sql connector created')
   try {
     await ensureSchema(pool)
     return pool
