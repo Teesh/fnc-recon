@@ -1,17 +1,20 @@
 // set up routes here
 import express from 'express'
-import {get, create, update, remove } from '../controllers/api.controller'
+import {get, getReports, create, update, remove } from '../controllers/api.controller'
 
 let router = express.Router()
 
-/* GET programming languages. */
+/* GET schema */
 router.get('/', get)
+
+/* GET reports */
+router.get('/reports', getReports)
   
 /* POST programming language */
-router.post('/', create)
+router.post('/reports', create)
 
 /* PUT programming language */
-router.put('/:id', update)
+router.put('/reports/:id', update)
 
 /* DELETE programming language */
-router.delete('/:id', remove)
+router.delete('/reports/:id', remove)

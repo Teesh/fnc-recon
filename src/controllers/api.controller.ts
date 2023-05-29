@@ -1,10 +1,18 @@
 // establish controllers for each route here
 import { Request, Response, NextFunction } from 'express'
-import { getReports, addReport, editReport, deleteReport } from '../services/api.service'
+import { getSchema, getAllReports, addReport, editReport, deleteReport } from '../services/api.service'
 
-export const get = async (req: Request, res: Response, next: NextFunction) => {
+export const get = async (req: Request, res: Response) => {
   try {
-      res.json(await getReports())
+    res.json(await getSchema())
+  } catch (err) {
+    res.send('' + err)
+  }
+}
+
+export const getReports = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+      res.json(await getAllReports())
   } catch (err: any) {
       console.error(`Error while getting reports`, err.message)
       next(err)

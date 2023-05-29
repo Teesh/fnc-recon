@@ -78,10 +78,6 @@ export const createPoolAndEnsureSchema = async (): Promise<Pool> => {
   }
 }
 
-export const getSchema = async () => {
-  return pool.query('DESCRIBE reports')
-}
-
 export async function query(sql: string, params?: Array<any>) {
   return await pool.query(sql, params)
 }

@@ -1,5 +1,4 @@
 // place database query functions here
-import { Pool } from 'promise-mysql'
 import { query } from './db.service'
 
 export interface Report {
@@ -11,7 +10,13 @@ export interface Report {
   alliance: boolean
 }
 
-export const getReports = async () => {
+export const getSchema = async () => {
+  return query(`
+    DESCRIBE reports
+  `)
+}
+
+export const getAllReports = async () => {
   return query(`
     SELECT *
     FROM reports
