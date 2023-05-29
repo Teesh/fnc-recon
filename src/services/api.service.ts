@@ -7,7 +7,7 @@ export interface Report {
   event: string,
   match: string,
   scouted_team: number,
-  alliance: boolean
+  alliance: number
 }
 
 export const getSchema = async () => {
@@ -24,18 +24,16 @@ export const getAllReports = async () => {
 }
 
 export const addReport = async (report: Report) => {
-  return query(`
-      INSERT INTO reports
-        (
-          reporting_team,
-          year,
-          event,
-          match,
-          scouted_team,
-          alliance
-        )
-      VALUES
-        (?, ?, ?, ?, ?, ?)
+  return query(`INSERT INTO reports 
+      (
+        reporting_team,
+        year,
+        \`event\`,
+        \`match\`,
+        scouted_team,
+        alliance
+      ) 
+      VALUES (?,?,?,?,?,?)
     `,
     [
       report.reporting_team,
@@ -55,7 +53,7 @@ export const editReport = async (id: string, report: Report) => {
         reporting_team=?,
         year=?,
         event=?,
-        match=?,
+        "match"=?,
         scouted_team=?,
         alliance=?
       WHERE
