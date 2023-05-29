@@ -2,15 +2,6 @@
 version: '3.1'
 
 services:
-  api:
-    container_name: fncreconapi
-    build: .
-    ports:
-      - '${PORT}:${PORT}'
-    expose:
-      - '${PORT}'
-    links:
-      - db
   db:
     container_name: fncrecondb
     image: mysql

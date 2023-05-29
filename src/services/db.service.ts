@@ -26,7 +26,7 @@ export const createUnixSocketPool = async (config: mysql.PoolConfig) => {
     }
   } else if (process.env.ENVIRONMENT === 'local') {
     envConfig = {
-      host: 'db',
+      host: 'localhost',
       port: 3306,
       user: 'root',
       password: 'password',
