@@ -2,7 +2,7 @@
 import express from 'express'
 import {get, getReports, create, update, remove } from '../controllers/api.controller'
 
-let router = express.Router()
+export let router = express.Router()
 
 /* GET schema */
 router.get('/', get)

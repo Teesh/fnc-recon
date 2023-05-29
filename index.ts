@@ -1,6 +1,7 @@
-import express, { Express, Request, Response } from 'express'
+import express, { Express } from 'express'
 import dotenv from 'dotenv'
 import { pool, createPoolAndEnsureSchema } from './src/services/db.service'
+import { router } from './src/routes/api.routes'
 
 dotenv.config()
 
@@ -18,6 +19,8 @@ app.use(async (req, res, next) => {
     return next(err)
   }
 })
+
+app.use('/', router)
 
 app.set('json spaces', 2)
 
