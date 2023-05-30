@@ -233,7 +233,7 @@ Project Link: [https://github.com/Teesh/fnc-recon](https://github.com/Teesh/fnc-
 [GCP]: https://img.shields.io/badge/Google_Cloud-0F9D58?style=for-the-badge&logo=google-cloud&logoColor=F4B400
 [GCP-url]: https://cloud.google.com/
 [MySQL]: https://img.shields.io/badge/MySQL-20232A?style=for-the-badge&logo=mysql&logoColor=61DAFB
-[MySQL-url]: https://mysql.org/
+[MySQL-url]: https://mysql.com/
 [Node.js]: https://img.shields.io/badge/Node.js-35495E?style=for-the-badge&logo=nodedotjs&logoColor=4FC08D
 [Node-url]: https://nodejs.org/
 [Express]: https://img.shields.io/badge/Express-DD0031?style=for-the-badge&logo=express&logoColor=white
