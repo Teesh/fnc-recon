@@ -161,7 +161,7 @@ _For more examples, please refer to the [Documentation (Placeholder)](https://ex
 - [ ] Build a data collection tool (e.g. Tiger Scout)
 - [ ] Build analytics API
 - [ ] Build an analytics website
-- [ ] Build an API repository for broader use
+- [ ] Build an API key distribution mechanism broader use
 
 See the [open issues](https://github.com/Teesh/fnc-recon/issues) for a full list of proposed features (and known issues). Feel free to add or track issues there for now. They can be migrated to the official repo later once that is built.
 
