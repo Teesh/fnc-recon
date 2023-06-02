@@ -230,7 +230,7 @@ Project Link: [https://github.com/Teesh/fnc-recon](https://github.com/Teesh/fnc-
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/teeshshahi
 [product-screenshot]: images/screenshot.png
-[GCP]: https://img.shields.io/badge/Google_Cloud-0F9D58?style=for-the-badge&logo=google-cloud&logoColor=F4B400
+[GCP]: https://img.shields.io/badge/Google_Cloud-0F9D58?style=for-the-badge&logo=google-cloud&logoColor=white
 [GCP-url]: https://cloud.google.com/
 [MySQL]: https://img.shields.io/badge/MySQL-20232A?style=for-the-badge&logo=mysql&logoColor=61DAFB
 [MySQL-url]: https://mysql.com/

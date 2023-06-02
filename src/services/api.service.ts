@@ -1,14 +1,6 @@
 // place database query functions here
 import { query } from './db.service'
-
-export interface Report {
-  reporting_team: number,
-  year: number,
-  event: string,
-  match: string,
-  scouted_team: number,
-  alliance: number
-}
+import { Report } from './api.types'
 
 export const getSchema = async () => {
   return query(`
@@ -33,16 +25,9 @@ export const addReport = async (report: Report) => {
         scouted_team,
         alliance
       ) 
-      VALUES (?,?,?,?,?,?)
+      VALUES ?
     `,
-    [
-      report.reporting_team,
-      report.year,
-      report.event,
-      report.match,
-      report.scouted_team,
-      report.alliance
-    ]
+    [ Object.values(report) ]
   )
 }
 
