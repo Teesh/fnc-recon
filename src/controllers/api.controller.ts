@@ -1,6 +1,6 @@
 // establish controllers for each route here
-import { Request, Response, NextFunction } from 'express'
-import { getSchema, getAllReports, addReport, editReport, deleteReport, getTeamReports, getTeamReportsYear } from '../services/api.service'
+import { NextFunction, Request, Response } from 'express'
+import { addReport, deleteReport, editReport, getAllReports, getSchema, getTeamReports, getTeamReportsSpecific } from '../services/api.service'
 
 export const get = async (req: Request, res: Response) => {
   try {
@@ -28,9 +28,9 @@ export const getAllTeamData = async (req: Request, res: Response, next: NextFunc
   }
 }
 
-export const getTeamDataYear = async (req: Request, res: Response, next: NextFunction) => {
+export const getTeamDataSpecific = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    res.json(await getTeamReportsYear(req.params.scouted_team, req.params.year))
+    res.json(await getTeamReportsSpecific(req.params.scouted_team, req.params.var))
   } catch (err: any) {
     console.error(`Error while getting team data from year`, err.message)
     next(err)

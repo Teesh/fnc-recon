@@ -1,6 +1,6 @@
 // set up routes here
 import express from 'express'
-import {get, getReports, create, update, remove, getAllTeamData, getTeamDataYear } from '../controllers/api.controller'
+import { create, get, getAllTeamData, getReports, getTeamDataSpecific, remove, update } from '../controllers/api.controller'
 
 export let router = express.Router()
 
@@ -14,7 +14,7 @@ router.get('/reports', getReports)
 router.get('/reports/:scouted_team', getAllTeamData)
 
 /* GET team data year */
-router.get('/reports/:scouted_team/:year', getTeamDataYear)
+router.get('/reports/:scouted_team/:var', getTeamDataSpecific)
 
 /* POST programming language */
 router.post('/reports', create)
