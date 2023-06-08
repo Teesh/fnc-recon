@@ -30,6 +30,14 @@ export const getTeamReports = async (teamName: String) => {
   `)
 }
 
+export const getTeamReportsYear = async (teamName: String, year: String) => {
+  return query(`
+    select * FROM reports
+    WHERE scouted_team = ${teamName}
+    AND year = ${year}
+  `)
+}
+
 export const addReport = async (report: Report) => {
   return query(`INSERT INTO reports 
       (
