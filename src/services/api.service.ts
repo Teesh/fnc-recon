@@ -30,11 +30,28 @@ export const getTeamReports = async (teamName: String) => {
   `)
 }
 
-export const getTeamReportsSpecific = async (teamName: String, identifier: String) => {
+export const getTeamReportsYear = async (teamName: String, year: String) => {
   return query(`
     SELECT * FROM reports
-    WHERE (scouted_team = ${teamName}) AND year = ${identifier} OR event = ${identifier}
-  `)
+    WHERE scouted_team=?
+    AND year=?
+  `,
+  [
+    teamName,
+    year
+  ])
+}
+
+export const getTeamReportsEvent = async (teamName: String, event: String) => {
+  return query(`
+    SELECT * FROM reports
+    WHERE scouted_team=?
+    AND event=?  
+  `,
+  [
+    teamName,
+    event
+  ])
 }
 
 export const addReport = async (report: Report) => {
