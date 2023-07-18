@@ -7,10 +7,10 @@ CREATE TABLE IF NOT EXISTS `reports` (
   `event` varchar(45) NOT NULL,
   `match` varchar(5) NOT NULL,
   `scouted_team` int unsigned NOT NULL,
-  `alliance` varchar DEFAULT 'red1',
-  `autonomous_game_pieces` in DEFAULT '0',
-  `autonomous_game_pieces_missed` in DEFAULT '0',
-  `auto_charging` varchar DEFAULT 'none',
+  `alliance` varchar(6) DEFAULT 'red1',
+  `autonomous_game_pieces` int DEFAULT '0',
+  `autonomous_game_pieces_missed` int DEFAULT '0',
+  `auto_charging` varchar(30) DEFAULT 'none',
   `high_cone_1` int DEFAULT '0',
   `high_cube_2` int DEFAULT '0',
   `high_cone_3` int DEFAULT '0',
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `reports` (
   `intake_single_miss` int DEFAULT '0',
   `intake_double_miss` int DEFAULT '0',
   `intake_floor_miss` int DEFAULT '0',
-  `endgame_charging` varchar DEFAULT 'none',
+  `endgame_charging` varchar(30) DEFAULT 'none',
   PRIMARY KEY (`id`),
   KEY `unique_entry` (`year`,`reporting_team`,`event`,`match`,`scouted_team`) USING BTREE
 );
