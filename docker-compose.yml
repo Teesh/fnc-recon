@@ -20,3 +20,4 @@ services:
       # Where our data will be persisted
     volumes:
       - ./test/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./data:/var/lib/mysql
