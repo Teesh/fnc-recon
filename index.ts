@@ -23,7 +23,7 @@ app.use(async (req, res, next) => {
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use('/', router)
+app.use('/api/v1', router)
 
 app.set('json spaces', 2)
 

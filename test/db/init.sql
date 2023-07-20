@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS `reports` (
   `match` varchar(5) NOT NULL,
   `scouted_team` int unsigned NOT NULL,
   `alliance` varchar(6) DEFAULT 'red1',
+  `total_score` int DEFAULT '0',
   `autonomous_game_pieces` int DEFAULT '0',
   `autonomous_game_pieces_missed` int DEFAULT '0',
   `auto_charging` varchar(30) DEFAULT 'none',
